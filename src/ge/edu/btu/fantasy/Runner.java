@@ -36,8 +36,15 @@ public class Runner {
         addTestFootballersInTeams();
         initFantasyTeam();
         addGoalForEvents();
+        finishGames();
 
         System.out.println("ჩემი გუნდის მთლიანი ქულების რაოდენობაა " + fantasyTeam.getTotalPoints());
+    }
+
+    private static void finishGames() {
+        event1.finish();
+        event2.finish();
+        event3.finish();
     }
 
     private static void addGoalForEvents() {

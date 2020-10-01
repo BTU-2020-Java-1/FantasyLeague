@@ -1,5 +1,6 @@
 package ge.edu.btu.fantasy.event;
 
+import ge.edu.btu.fantasy.exceptions.FantasyLeagueException;
 import ge.edu.btu.fantasy.footballer.Footballer;
 import ge.edu.btu.fantasy.team.Team;
 
@@ -39,16 +40,32 @@ public class Event implements IEvent {
     @Override
     public void addGoal(boolean homeTeamGoal, int goalNumber, int assistNumber) {
         if (homeTeamGoal) {
-            Footballer goalFootballer = homeTeam.getFootballerByNumber(goalNumber);
-            goalFootballer.increaseGoals();
-            Footballer assistFootballer = homeTeam.getFootballerByNumber(assistNumber);
-            assistFootballer.increaseAssists();
+            try {
+                Footballer goalFootballer = homeTeam.getFootballerByNumber(goalNumber);
+                goalFootballer.increaseGoals();
+            } catch (FantasyLeagueException ex) {
+                System.out.println("დაფიქსირდა შეცდომა: " + ex.getMessage());
+            }
+            try {
+                Footballer assistFootballer = homeTeam.getFootballerByNumber(assistNumber);
+                assistFootballer.increaseAssists();
+            } catch (FantasyLeagueException ex) {
+                System.out.println("დაფიქსირდა შეცდომა: " + ex.getMessage());
+            }
             homeTeamGoalsAmount++;
         } else {
-            Footballer goalFootballer = awayTeam.getFootballerByNumber(goalNumber);
-            goalFootballer.increaseGoals();
-            Footballer assistFootballer = awayTeam.getFootballerByNumber(assistNumber);
-            assistFootballer.increaseAssists();
+            try {
+                Footballer goalFootballer = awayTeam.getFootballerByNumber(goalNumber);
+                goalFootballer.increaseGoals();
+            } catch (FantasyLeagueException ex) {
+                System.out.println("დაფიქსირდა შეცდომა: " + ex.getMessage());
+            }
+            try {
+                Footballer assistFootballer = awayTeam.getFootballerByNumber(assistNumber);
+                assistFootballer.increaseAssists();
+            } catch (FantasyLeagueException ex) {
+                System.out.println("დაფიქსირდა შეცდომა: " + ex.getMessage());
+            }
             awayTeamGoalsAmount++;
         }
     }

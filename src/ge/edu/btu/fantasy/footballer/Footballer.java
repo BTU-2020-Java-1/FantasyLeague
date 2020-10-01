@@ -1,5 +1,7 @@
 package ge.edu.btu.fantasy.footballer;
 
+import java.util.Objects;
+
 public abstract class Footballer {
 
     private int number;
@@ -60,4 +62,29 @@ public abstract class Footballer {
     }
 
     public abstract int getPoints();
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Footballer that = (Footballer) o;
+        return number == that.number &&
+                Objects.equals(name, that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(number, name);
+    }
+
+    @Override
+    public String toString() {
+        return "Footballer{" +
+                "number=" + number +
+                ", name='" + name + '\'' +
+                ", goals=" + goals +
+                ", assists=" + assists +
+                ", cleanSheets=" + cleanSheets +
+                '}';
+    }
 }
